@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post</title>
+    <link rel="stylesheet" href="styles/post-styles.css">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript" src="scripts/SubmitHandler.js"></script>
+    <script type="text/javascript" src="scripts/TextHandler.js"></script>
+    <script type="text/javascript" src="scripts/ServiceHealthChecker.js"></script>
+</head>
+<body onload="setEvents(); resetPageView();" onsubmit="executeUpdate();">
+    <form>
+        <label for="user_text"><h1>User's notes:</h1></label><br>
+        <textarea id="user_text" placeholder="Describe yourself here..." name="user_text" rows="4" cols="50"></textarea><br>
+        <div>
+        <input type="button" value="Reset" onclick="resetPageView();">
+        <input type="submit" value="Update">
+        <input type="button" value="Show more" name="pagination" onclick="showNextPage();">
+        <input type="button" value="Logout" onclick="executeDelete();">
+        </div>
+    </form>
+    
+</body>
+</html>

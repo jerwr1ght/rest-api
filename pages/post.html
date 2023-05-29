@@ -11,15 +11,21 @@
     <script type="text/javascript" src="scripts/TextHandler.js"></script>
     <script type="text/javascript" src="scripts/ServiceHealthChecker.js"></script>
 </head>
-<body onload="setEvents(); resetPageView();" onsubmit="executeUpdate();">
+<body onload="setEvents(); resetPagination();" onsubmit="executeUpdate();">
     <form>
         <label for="user_text"><h1>User's notes:</h1></label><br>
         <textarea id="user_text" placeholder="Describe yourself here..." name="user_text" rows="4" cols="50"></textarea><br>
-        <div>
+        <div class="tools">
+            <div>
+                <label>Words number</label><br>
+                <input type="text" value="20" placeholder="Enter words number to load" oninput="setPageSize();">
+                <input type="button" value="Show more" name="pagination" onclick="showNextPage();">
+            </div><br>
+            <div>
         <input type="button" value="Reset" onclick="resetPageView();">
         <input type="submit" value="Update">
-        <input type="button" value="Show more" name="pagination" onclick="showNextPage();">
         <input type="button" value="Logout" onclick="executeDelete();">
+    </div>
         </div>
     </form>
     

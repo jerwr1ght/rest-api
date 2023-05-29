@@ -6,9 +6,9 @@ body {
 }
 
 input[type=submit]{
-    height: 45px;
+    height: 46px;
     font-family: 'Roboto', sans-serif;
-    font-size: 11px;
+    font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 2.5px;
     font-weight: 500;

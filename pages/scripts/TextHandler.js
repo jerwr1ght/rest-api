@@ -17,6 +17,7 @@ function getTextAreaValue() {
 }
 
 function resetPagination() {
+    sessionStorage.setItem("page", 1);
     resetPageView();
     document.getElementsByName("pagination")[0].value = "Show more";
     document.getElementsByName("pagination")[0].removeAttribute("id");   
@@ -37,10 +38,19 @@ async function resetPageView() {
         page = 1;
         sessionStorage.setItem("page", 1);
     }
-    //sessionStorage.setItem("page", 1);
 
     for(var i = 0; i < page; i++) {
         await executePageView(i + 1);
+    }
+}
+
+async function setPageSize() {
+    const field = document.querySelector('input[type="text"]');
+    const parsed = parseInt(field.value);
+
+    if (!isNaN(parsed) && parsed > 0) {
+        pageSize = parsed;
+        await resetPagination();
     }
 }
 
@@ -68,16 +78,20 @@ async function executePageView(page) {
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4 && xhr.status === 200) {
             var response = JSON.parse(xhr.responseText);
-            //console.log(response);
-            if (response.isLast) {
-                document.getElementById("user_text").value += response.responseText;
-                sessionStorage.setItem("page", 1);
+            const userTextField = document.getElementById("user_text");
+            
+            if (userTextField.value.length > 0) {
+                response.responseText = " " + response.responseText;
+            }
+
+            if (response.isLast) {    
+                userTextField.value += response.responseText;
                 document.getElementsByName("pagination")[0].value = "Show less";
                 document.getElementsByName("pagination")[0].setAttribute("id", "disabled");
                 document.getElementsByName("pagination")[0].setAttribute("onclick", "resetPagination();");
             }
             else {
-                document.getElementById("user_text").value += response.responseText;
+                userTextField.value += response.responseText;
                 //sessionStorage.setItem("page", parseInt(sessionStorage.getItem("page")) + 1);
             }
         }
